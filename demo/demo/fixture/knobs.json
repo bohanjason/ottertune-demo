@@ -1,0 +1,21 @@
+[
+	{
+        "fields": {
+            "name": "shared_buffers", 
+            "description": "Sets the amount of memory the database server uses for shared memory buffers.", 
+            "default": 1,
+            "setting": "1,2,3"
+        }, 
+        "model": "demo.KnobCatalog"
+    },
+
+    {
+        "fields": {
+            "name": "effective_io_concurrency", 
+            "description": "Sets the number of concurrent disk I/O operations that PostgreSQL expects can be executed simultaneously.", 
+            "default": 1,
+            "setting": "4,5,6"
+        }, 
+        "model": "demo.KnobCatalog"
+    }
+]

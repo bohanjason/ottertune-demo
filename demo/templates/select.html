@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main-content">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="#">OtterTune</a>
+    </li>
+    <li class="breadcrumb-item active">Tune</li>
+  </ol>
+
+  <form method="post">
+  <div class="card" >
+    <div class="card-header">Choose Your Settings</div>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Knob Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Default Value</th>
+            <th scope="col">Your Setting</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for x, y in knobs  %}
+          <tr>
+            <td>{{ x.name }}</td>
+            <td>{{ x.description }}</td>
+            <td>{{ x.default }}</td>
+            <td>
+              <select class="custom-select" name={{x.name}} >
+              {% for choice in y %}
+                <option>{{ choice }}</option>
+              {% endfor %}
+              </select>
+            </td>
+          </tr> 
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="card-footer">    
+      <form>  
+      Username:   <input size="30" type="text" name="username">
+      Email:   <input size="30" type="email" name="email" required />
+      <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  </form>
+</div>
+
+{% endblock %}

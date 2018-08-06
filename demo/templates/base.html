@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+<style type="text/css">
+.navbar-fixed-left {
+  width: 15%;
+  height: 138vh;
+  position: relative;
+}
+
+.main-content {
+  top: 3%;
+  width: 83%;
+  position: absolute;
+  right: 1%;
+}
+
+.navbar-nav > li{
+  width: 100%;
+}
+
+.nav-base {
+    list-style-type: none;
+    margin-left: 20%;
+    margin-top: -300%;
+    font-size: 120%;
+    width: 100%;
+}
+
+a.navbar-brand
+{
+  font-size: 120%;
+  margin-top: 30px;
+  margin-bottom: 15%;
+  position: relative;
+}
+
+</style>
+
+  <!--Javascript imports -->
+  <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+  
+  <!-- CSS imports -->
+  <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <!-- Page level plugin CSS-->
+  <link href="/static/css/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}OtterTune Demo{% endblock %}</title>
+  </head>
+
+
+  <body>
+
+<div class="row">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-left">
+
+    <!--div class="collapse navbar-collapse" id="navbar-->
+
+
+      <ul class="nav navbar-nav nav-base ">
+
+        <a class="navbar-brand" href="#">OtterTune</a>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="/select/">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/select/">Tune</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/tasks/">Tasks</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" href="/lead/">LeaderBoard</a>
+        </li>
+      </ul>
+      
+  </nav>
+
+
+    <main>
+      {% block content %}
+      {% endblock %}
+    </main>
+
+</div>
+
+  </body>
+
+
+</html>

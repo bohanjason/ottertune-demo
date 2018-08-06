@@ -1,0 +1,13 @@
+{
+  "database_type" : "postgres",
+  "database_name" : "tpcc",
+  "database_disk": "/dev/mapper/ottertune--dev--vg-root",
+  "database_conf": "/Users/bohan/Desktop/git/ottertune-web-interface/client/driver/postgresql.conf",
+  "username" : "bohan",
+  "password" : "",
+  "oltpbench_home": "/Users/bohan/Desktop/git/oltpbench",
+  "oltpbench_config": "/Users/bohan/Desktop/git/oltpbench/config/tpcc_config_postgres.xml",
+  "oltpbench_workload": "tpcc",
+  "save_path": "/Users/bohan/Desktop/git/ottertune-web-interface/client/driver/results",
+  "oltpbench_log" : "/Users/bohan/Desktop/git/ottertune-web-interface/client/driver/oltp.log"
+}

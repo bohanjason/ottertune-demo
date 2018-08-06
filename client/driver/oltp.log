@@ -1,0 +1,22 @@
+20:29:01,558 (DBWorkload.java:259) INFO  - ======================================================================
+
+Benchmark:     TPCC {com.oltpbenchmark.benchmarks.tpcc.TPCCBenchmark}
+Configuration: /Users/bohan/Desktop/git/oltpbench/config/tpcc_config_postgres.xml
+Type:          POSTGRES
+Driver:        org.postgresql.Driver
+URL:           jdbc:postgresql://localhost:5432/tpcc
+Isolation:     TRANSACTION_READ_COMMITTED
+Scale Factor:  2.0
+
+20:29:01,559 (DBWorkload.java:260) INFO  - ======================================================================
+20:29:01,569 (DBWorkload.java:813) INFO  - Creating 2 virtual terminals...
+20:29:01,675 (DBWorkload.java:818) INFO  - Launching the TPCC Benchmark with 1 Phase...
+20:29:01,682 (ThreadBench.java:327) INFO  - [0;1mPHASE START[0;0m :: [Workload=TPCC] [Serial=false] [Time=10] [WarmupTime=0] [Rate=10000] [Arrival=REGULAR] [Ratios=[45.0, 43.0, 4.0, 4.0, 4.0]] [ActiveWorkers=2]
+20:29:01,683 (ThreadBench.java:477) INFO  - [0;1mMEASURE[0;0m :: Warmup complete, starting measurements.
+20:29:11,684 (ThreadBench.java:433) INFO  - [0;1mTERMINATE[0;0m :: Waiting for all terminals to finish ..
+20:29:11,686 (ThreadBench.java:233) INFO  - Starting WatchDogThread
+20:29:11,698 (DBWorkload.java:824) INFO  - ======================================================================
+20:29:11,698 (DBWorkload.java:825) INFO  - Rate limited reqs/s: Results(nanoSeconds=10000745175, measuredRequests=8972) = 897.1331478806528 requests/sec
+20:29:11,700 (DBWorkload.java:682) INFO  - Output Raw data into file: results/outputfile.13.csv
+20:29:11,893 (DBWorkload.java:736) INFO  - Output into file: results/outputfile.13.res
+20:29:11,893 (DBWorkload.java:739) INFO  - Grouped into Buckets of 5 seconds

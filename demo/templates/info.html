@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="main-content">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="#">OtterTune</a>
+    </li>
+    <li class="breadcrumb-item active">Task</li>
+  </ol>
+
+  <form method="post">
+  <div class="card" >
+    <div class="card-header">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th scope="col">Task ID: {{task.id}}</th>
+            <th scope="col">Username: {{task.username}}</th>
+            <th scope="col">Email: {{task.email}}</th>
+            <th scope="col">Status: {{task.status}}</th>
+            <th scope="col">Throughput: {{task.throughput}}</th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Knob Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Default Value</th>
+            <th scope="col">Your Setting</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for knob, val in settings %}
+          <tr>
+            <td>{{ knob.name }}</td>
+            <td>{{ knob.description }}</td>
+            <td>{{ knob.default }}</td>
+            <td>{{ val }}</td>
+          </tr> 
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  </form>
+</div>
+
+{% endblock %}

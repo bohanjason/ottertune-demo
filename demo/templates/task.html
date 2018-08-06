@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ 
+<div class="main-content">
+
+  <!--h1>Leader Board</h1-->
+
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="#">OtterTune</a>
+    </li>
+    <li class="breadcrumb-item active">Tasks</li>
+  </ol>
+
+  <div class="card">
+    <div class="card-header">
+      Tasks Board
+    </div>
+    <div class="card-body">
+
+      <table class="table table-striped table-bordered " id="dataTable">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">User</th>
+            <th scope="col">Email</th>
+            <th scope="col">Status</th>
+            <!--th scope="col">Throughput</th-->
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for task in tasks %}
+          <tr>
+            <td>{{ task.id }}</td>
+            <td>{{ task.username }}</td>
+            <td>{{ task.email }}</td>
+            <td>{{ task.status }}</td>
+            <!--td>{{ task.throughput }}</td-->
+          </tr> 
+          {% endfor %}
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="/static/js/jquery.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<script src="/static/js/jquery.dataTables.js"></script>
+<script src="/static/js/dataTables.bootstrap4.js"></script>
+<!-- Custom scripts for this page-->
+<script src="/static/js/sb-admin-datatables.min.js"></script>
+
+{% endblock %}
