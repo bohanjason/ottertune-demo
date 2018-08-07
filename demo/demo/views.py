@@ -4,15 +4,19 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.utils import timezone
+from django.core.mail import send_mail
 
 from .forms import SignUpForm
 from .models import KnobCatalog, Config
-from .tasks import get_oltpbench_results
 from django.views.decorators.csrf import csrf_exempt
 from django.template.context_processors import csrf
 from django.http import HttpResponse
 import json
 import logging
+import smtplib
+from email.MIMEMultipart import MIMEMultipart
+from email.MIMEText import MIMEText
+from ..settings import EMAIL_FROMADDR, EMAIL_PWD
 
 # Logging
 LOG = logging.getLogger(__name__)
@@ -62,13 +66,13 @@ def tpcc(request):
     for knob in knobs:
         settings.append((knob, knob.setting.split(",")))
     
-    return render(request, 'select.html', {"knobs": settings})
+    return render(request, 'select.html', {"knobs": settings, "nbar": "tune"})
 
 
 @csrf_exempt
 def tasks(request):
     tasks = Config.objects.all()
-    return render(request, 'task.html', {'tasks': tasks})
+    return render(request, 'task.html', {'tasks': tasks, "nbar": "tasks"})
 
 def get_result(request, task_id):
     try:
@@ -84,7 +88,7 @@ def get_result(request, task_id):
 
 def lead(request):
     leads = Config.objects.filter(status='FINISHED').order_by('-throughput')
-    return render(request, 'lead.html', {'leads': leads})
+    return render(request, 'lead.html', {'leads': leads, "nbar": "lead"})
 
 def task_info(request, task_id):
     knobs = KnobCatalog.objects.all()
@@ -101,6 +105,28 @@ def task_info(request, task_id):
         return HttpResponse("Invalid task id: " + task_id)
     return render(request, 'info.html', {'task': config, "settings": settings})
 
+def send_email(toAddr, subject, body):
+    try:  
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        # Authentication
+        server.login(EMAIL_FROMADDR, EMAIL_PWD)
+
+        msg = MIMEMultipart()
+        msg['From'] = EMAIL_FROMADDR
+        msg['To'] = toAddr
+        msg['Subject'] = subject
+        #body = "your task throughput: 999, rank: 1"
+        msg.attach(MIMEText(body, 'plain'))
+
+        # Converts the Multipart msg into a string
+        text = msg.as_string()
+        # sending the mail
+        server.sendmail(EMAIL_FROMADDR, toAddr, text)
+        # terminating the session
+        server.quit()
+    except:  
+        print 'Something went wrong...'
 
 @csrf_exempt
 def new_result(request):
@@ -114,6 +140,8 @@ def new_result(request):
             config.throughput = throughput
             config.status = 'FINISHED'
             config.save()
+            send_email(config.email, "OtterTune Demo Result",
+                      "your task throughput: 999, rank: 1")
         except Config.DoesNotExist:
             LOG.warning("Invalid task id: %s", task_id)
         return HttpResponse("task id: {}, throughput (txn/sec): {}".format(task_id, throughput))

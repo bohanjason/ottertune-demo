@@ -52,7 +52,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.core.mail.backends.smtp.EmailBackend',
 ]
+
+#EMAIL_HOST_USER = 'bohanz2'
+
+#EMAIL_HOST_PASSWORD = 'zBH142857!'
 
 ROOT_URLCONF = 'demo.urls'
 
@@ -135,3 +140,6 @@ STATIC_URL = '/static/'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 LOGIN_REDIRECT_URL = 'home'
+
+EMAIL_FROMADDR = "zbhspam@gmail.com"
+EMAIL_PWD = "PASSWORD"

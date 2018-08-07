@@ -41,7 +41,8 @@ a.navbar-brand
 
   <!--Javascript imports -->
   <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <!-- CSS imports -->
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <!-- Page level plugin CSS-->
@@ -55,42 +56,41 @@ a.navbar-brand
 
   <body>
 
-<div class="row">
+<div class="row" id="topheader"> 
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-left">
 
     <!--div class="collapse navbar-collapse" id="navbar-->
 
-
       <ul class="nav navbar-nav nav-base ">
 
         <a class="navbar-brand" href="#">OtterTune</a>
 
-        <li class="nav-item active">
-          <a class="nav-link" href="/select/">Home<span class="sr-only">(current)</span></a>
-        </li>
         <li class="nav-item">
+          <a class="nav-link"  href="#">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class = "nav-item {% if nbar == 'tune' %} active {% endif %}">
           <a class="nav-link" href="/select/">Tune</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {% if nbar == 'tasks' %} active {% endif %}">
           <a class="nav-link" href="/tasks/">Tasks</a>
         </li>
-        <li class="nav-item" >
+        <li class="nav-item {% if nbar == 'lead' %} active {% endif %}" >
           <a class="nav-link" href="/lead/">LeaderBoard</a>
         </li>
       </ul>
-      
+
   </nav>
 
-
-    <main>
-      {% block content %}
-      {% endblock %}
-    </main>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
 
 </div>
 
-  </body>
 
+</body>
 
 </html>
+
