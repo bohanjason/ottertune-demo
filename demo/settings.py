@@ -55,10 +55,6 @@ MIDDLEWARE = [
     'django.core.mail.backends.smtp.EmailBackend',
 ]
 
-#EMAIL_HOST_USER = 'bohanz2'
-
-#EMAIL_HOST_PASSWORD = 'zBH142857!'
-
 ROOT_URLCONF = 'demo.urls'
 
 TEMPLATES = [
