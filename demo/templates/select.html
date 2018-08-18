@@ -28,9 +28,9 @@
           <tr>
             <td>{{ x.name }}</td>
             <td>{{ x.description }}</td>
-            <td>{{ x.default }}</td>
+            <td >{{ x.default }}</td>
             <td>
-              <select class="custom-select" name={{x.name}} >
+              <select class="custom-select" name={{x.name}} style="width: 90px;">
               {% for choice in y %}
                 <option>{{ choice }}</option>
               {% endfor %}
