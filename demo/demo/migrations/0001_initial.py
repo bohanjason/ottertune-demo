@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('email', models.CharField(max_length=40)),
                 ('knobs_setting', models.TextField(default='')),
                 ('throughput', models.FloatField(default=0.0)),
-                ('status', models.CharField(default=b'PENDING', max_length=40))
+                ('status', models.CharField(default='PENDING', max_length=40))
             ],
         ),
         migrations.CreateModel(

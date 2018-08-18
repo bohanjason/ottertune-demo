@@ -14,8 +14,8 @@ from django.http import HttpResponse
 import json
 import logging
 import smtplib
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from ..settings import EMAIL_FROMADDR, EMAIL_PWD
 
 # Logging
@@ -51,15 +51,15 @@ def tpcc(request):
         post = request.POST
         for k in post:
             if k != "username" and k != "email":
-                print k
+                print (k)
                 knobs_setting[k] = post[k]
         config = Config.objects.create(username = post["username"],
                                       email = post["email"],
                                       knobs_setting = json.dumps(knobs_setting))
         config.save()
         config_id = config.pk
-        print config_id
-        print knobs_setting
+        print (config_id)
+        print (knobs_setting)
 
     knobs = KnobCatalog.objects.all()
     settings = []
@@ -83,7 +83,7 @@ def get_result(request, task_id):
         LOG.warning("Invalid task id: %s", task_id)
         return HttpResponse("Invalid task id: " + task_id)
 
-    print "get result id {}".format(task_id)
+    print ("get result id {}".format(task_id))
     return HttpResponse(config.knobs_setting)
 
 def lead(request):
@@ -99,7 +99,7 @@ def task_info(request, task_id):
         knobs_setting = json.loads(config.knobs_setting)
         for knob in knobs:
             settings.append((knob, knobs_setting[knob.name]))
-        print settings
+        print (settings)
     except Config.DoesNotExist:
         LOG.warning("Invalid task id: %s", task_id)
         return HttpResponse("Invalid task id: " + task_id)
@@ -126,15 +126,15 @@ def send_email(toAddr, subject, body):
         # terminating the session
         server.quit()
     except:  
-        print 'Something went wrong...'
+        print ('Something went wrong...')
 
 @csrf_exempt
 def new_result(request):
     if request.method == 'POST':
         throughput = round(float(request.POST['throughput']), 2)
         task_id = request.POST['task_id']
-        print throughput
-        print task_id
+        print (throughput)
+        print (task_id)
         try:
             config = Config.objects.get(pk=task_id)
             config.throughput = throughput
