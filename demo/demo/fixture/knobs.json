@@ -17,5 +17,85 @@
             "setting": "4,5,6"
         }, 
         "model": "demo.KnobCatalog"
+    },
+
+    {
+        "fields": {
+            "name": "commit_delay",
+            "description": "commit_delay adds a time delay, measured in microseconds, before a WAL flush is initiated. This can improve group commit throughput by allowing a larger number of transactions to commit via a single WAL flush.",
+            "default": 0,
+            "setting": "0, 10, 50, 100, 200, 500"
+        },
+        "model": "demo.KnobCatalog"
+    },
+
+    {
+        "fields": {
+            "name": "commit_siblings",
+            "description": "Minimum number of concurrent open transactions to require before performing the commit_delay delay.",
+            "default": 5,
+            "setting": "5, 10, 50, 100, 200, 500"
+        },
+        "model": "demo.KnobCatalog"
+    },
+
+    {
+        "fields": {
+            "name": "checkpoint_segments",
+            "description": "Maximum number of log file segments between automatic WAL checkpoints (each segment is normally 16 megabytes).",
+            "default": 3,
+            "setting": "3, 10, 50, 100, 200, 500"
+        },
+        "model": "demo.KnobCatalog"
+    },
+
+    {
+        "fields": {
+            "name": "checkpoint_timeout",
+            "description": "Maximum time between automatic WAL checkpoints, in seconds",
+            "default": 5,
+            "setting": "3, 10, 50, 100, 200, 500"
+        },
+        "model": "demo.KnobCatalog"
+    },
+
+    {
+        "fields": {
+            "name": "default_statistics_target",
+            "description": "Sets the default statistics target for table columns without a column-specific target set via ALTER TABLE SET STATISTICS. Larger values increase the time needed to do ANALYZE, but might improve the quality of the planner's estimates.",
+            "default": 100,
+            "setting": "3, 10, 50, 100, 200, 500"
+        },
+        "model": "demo.KnobCatalog"
+    },
+
+    {
+        "fields": {
+            "name": "wal_buffers",
+            "description": "The amount of shared memory used for WAL data that has not yet been written to disk. The default setting of -1 selects a size equal to 1/32nd (about 3%) of shared_buffers, but not less than 64kB nor more than the size of one WAL segment, typically 16MB.",
+            "default": -1,
+            "setting": "3, 10, 50, 100, 200, 500"
+        },
+        "model": "demo.KnobCatalog"
+    },
+
+    {
+        "fields": {
+            "name": "effective_cache_size",
+            "description": "Sets the planner's assumption about the effective size of the disk cache that is available to a single query.",
+            "default": 128,
+            "setting": "3, 10, 50, 100, 200, 500"
+        },
+        "model": "demo.KnobCatalog"
+    },
+
+    {
+        "fields": {
+            "name": "bgwriter_lru_maxpages",
+            "description": "In each round, no more than this many buffers will be written by the background writer. Setting this to zero disables background writing.",
+            "default": 100,
+            "setting": "3,10,50,100,200,500"
+        },
+        "model": "demo.KnobCatalog"
     }
 ]
