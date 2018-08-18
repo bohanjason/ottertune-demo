@@ -4,7 +4,7 @@
             "name": "shared_buffers", 
             "description": "Sets the amount of memory the database server uses for shared memory buffers.", 
             "default": "128MB",
-            "setting": "1,2,3"
+            "setting": "32MB, 128MB, 1GB, 8GB, 12GB, 16GB"
         }, 
         "model": "demo.KnobCatalog"
     },
@@ -14,7 +14,7 @@
             "name": "effective_io_concurrency", 
             "description": "Sets the number of concurrent disk I/O operations that PostgreSQL expects can be executed simultaneously.", 
             "default": "1",
-            "setting": "1,4,5,6"
+            "setting": "1, 4, 8, 16, 32, 64"
         }, 
         "model": "demo.KnobCatalog"
     },
@@ -54,7 +54,7 @@
             "name": "checkpoint_timeout",
             "description": "Maximum time between automatic WAL checkpoints, in seconds",
             "default": "5min",
-            "setting": "5min, 10min, 50min, 100min, 200min, 500min"
+            "setting": "1min, 5min, 10min, 30min, 60min, 180min"
         },
         "model": "demo.KnobCatalog"
     },
@@ -74,7 +74,7 @@
             "name": "wal_buffers",
             "description": "The amount of shared memory used for WAL data that has not yet been written to disk. The default setting of -1 selects a size equal to 1/32nd (about 3%) of shared_buffers, but not less than 64kB nor more than the size of one WAL segment, typically 16MB.",
             "default": "4MB",
-            "setting": "1MB, 4MB, 8MB, 16MB, 32MB"
+            "setting": "1MB, 2MB, 4MB, 8MB, 16MB, 32MB"
         },
         "model": "demo.KnobCatalog"
     },
