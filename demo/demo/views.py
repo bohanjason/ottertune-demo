@@ -64,7 +64,7 @@ def tpcc(request):
     knobs = KnobCatalog.objects.all()
     settings = []
     for knob in knobs:
-        settings.append((knob, knob.setting.split(",")))
+        settings.append((knob, [k.strip() for k in knob.setting.split(",")]))
     
     return render(request, 'select.html', {"knobs": settings, "nbar": "tune"})
 

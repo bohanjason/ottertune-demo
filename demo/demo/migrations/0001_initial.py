@@ -27,8 +27,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=30)),
-                ('description', models.CharField(max_length=200)),
-                ('default', models.IntegerField()),
+                ('description', models.CharField(max_length=20000)),
+                ('default', models.CharField(max_length=40)),
                 ('setting', models.CharField(max_length=200))
             ],
         ),

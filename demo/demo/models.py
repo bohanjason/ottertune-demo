@@ -17,7 +17,6 @@ class Config(models.Model):
 class KnobCatalog(models.Model):
   name = models.CharField(max_length=30)
   description = models.CharField(max_length=20000)
-  # TO FIX, chars 
-  default = models.IntegerField()
+  default = models.CharField(max_length=40)
   setting = models.CharField(max_length=200)
 

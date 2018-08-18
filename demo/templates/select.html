@@ -30,9 +30,14 @@
             <td>{{ x.description }}</td>
             <td >{{ x.default }}</td>
             <td>
-              <select class="custom-select" name={{x.name}} style="width: 90px;">
+              <select class="custom-select" name={{x.name}} style="width: 100px;">
+
               {% for choice in y %}
-                <option>{{ choice }}</option>
+                {%if choice == x.default%}
+                  <option selected>{{ x.default }}</option>
+                {%else%}
+                  <option>{{ choice }}</option>
+                {%endif%}
               {% endfor %}
               </select>
             </td>
