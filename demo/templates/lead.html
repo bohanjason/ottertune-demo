@@ -24,8 +24,8 @@
           <tr>
             <th scope="col">Rank #</th>
             <th scope="col">User</th>
-            <th scope="col">Email</th>
-            <th scope="col">Task ID</th>
+            <!--th scope="col">Email</th-->
+            <th scope="col">Your Setting</th>
             <th scope="col">Throughput</th>
           </tr>
         </thead>
@@ -35,8 +35,8 @@
           <tr>
             <td>{{ forloop.counter }}</td>
             <td>{{ lead.username }}</td>
-            <td>{{ lead.email }}</td>
-            <td><a href="/task_info/{{lead.id}}">{{ lead.id }}</a></td>
+            <!--td>{{ lead.email }}</td-->
+            <td><a href="/task_info/{{lead.id}}">Your Setting</a></td>
             <td>{{ lead.throughput }}</td>
           </tr> 
           {% endfor %}
