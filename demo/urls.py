@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^select/$', core_views.tpcc, name='tpcc'),
     url(r'^lead/$', core_views.lead, name='lead'),
     url(r'^tasks/$', core_views.tasks, name='tasks'),
+    url(r'^biglead/$', core_views.biglead, name='biglead'),
     url(r'^new_result/$', core_views.new_result, name='new_result'),
     url(r'^get_result/(?P<task_id>[0-9a-zA-Z]+)$', core_views.get_result, name="get_result"),
     url(r'^task_info/(?P<task_id>[0-9]+)$', core_views.task_info, name="task_info")

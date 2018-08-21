@@ -90,6 +90,10 @@ def lead(request):
     leads = Config.objects.filter(status='FINISHED').order_by('-throughput')
     return render(request, 'lead.html', {'leads': leads, "nbar": "lead"})
 
+def biglead(request):
+    leads = Config.objects.filter(status='FINISHED').order_by('-throughput')
+    return render(request, 'biglead.html', {'leads': leads, "nbar": "lead"})
+
 def task_info(request, task_id):
     knobs = KnobCatalog.objects.all()
     settings = []

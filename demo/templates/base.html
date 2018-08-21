@@ -66,9 +66,6 @@ a.navbar-brand
 
         <a class="navbar-brand" href="#">OtterTune</a>
 
-        <li class="nav-item">
-          <a class="nav-link"  href="#">Home<span class="sr-only">(current)</span></a>
-        </li>
         <li class = "nav-item {% if nbar == 'tune' %} active {% endif %}">
           <a class="nav-link" href="/select/">Tune</a>
         </li>
@@ -77,6 +74,9 @@ a.navbar-brand
         </li>
         <li class="nav-item {% if nbar == 'lead' %} active {% endif %}" >
           <a class="nav-link" href="/lead/">LeaderBoard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"  href="/biglead/">Display<span class="sr-only">(current)</span></a>
         </li>
       </ul>
 
