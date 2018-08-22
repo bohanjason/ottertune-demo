@@ -33,7 +33,7 @@
         <tbody>
           {% for task in tasks %}
           <tr>
-            <td>{{ task.id }}</td>
+            <td><a href="/task_info/{{task.id}}">{{ task.id }}</a></td>
             <td>{{ task.username }}</td>
             <!--td>{{ task.email }}</td-->
             <td>{{ task.status }}</td>
