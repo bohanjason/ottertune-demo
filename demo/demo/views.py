@@ -77,6 +77,8 @@ def tasks(request):
 def get_result(request, task_id):
     try:
         config = Config.objects.get(pk=task_id)
+        if(config.status == 'FINISHED'):
+            return HttpResponse("FINISHED BEFORE")
         config.status = 'RUNNING'
         config.save()
     except Config.DoesNotExist:
