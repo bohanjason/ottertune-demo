@@ -132,7 +132,7 @@ def send_email(toAddr, subject, body):
         # terminating the session
         server.quit()
     except:  
-        print ('Something went wrong...')
+        print ('Something went wrong when sending emails...')
 
 @csrf_exempt
 def new_result(request):
@@ -146,8 +146,8 @@ def new_result(request):
             config.throughput = throughput
             config.status = 'FINISHED'
             config.save()
-            send_email(config.email, "OtterTune Demo Result",
-                      "your task throughput: 999, rank: 1")
+            #send_email(config.email, "OtterTune Demo Result",
+            #          "your task throughput: 999, rank: 1")
         except Config.DoesNotExist:
             LOG.warning("Invalid task id: %s", task_id)
         return HttpResponse("task id: {}, throughput (txn/sec): {}".format(task_id, throughput))
