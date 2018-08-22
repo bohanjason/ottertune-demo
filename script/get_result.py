@@ -33,6 +33,7 @@ def main():
     start = time.time()
     while True:
         response = urllib.urlopen(request).read().decode()
+        print response
         if 'Fail' in response:
             LOG.info('Tuning failed\n')
             break
@@ -40,6 +41,12 @@ def main():
             time.sleep(query_interval)
             timer += query_interval
             LOG.info('%s s', str(timer))
+        elif 'FINISHED' in response:
+            LOG.info('task {} finished before'.format(task_id))
+            next_conf_f = open('config_{}'.format(task_id), 'w')
+            next_conf_f.write("FINISHED")
+            next_conf_f.close()
+            return {}
         else:
             next_conf_f = open('config_{}'.format(task_id), 'w')
             knob_settings = json.loads(response)

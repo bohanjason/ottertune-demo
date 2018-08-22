@@ -54,7 +54,7 @@ def check_disk_usage():
 @task
 def restart_database():
     if CONF['database_type'] == 'postgres':
-        cmd = 'brew services restart postgres' #ubuntu: 'sudo service postgresql restart'
+        cmd = 'sudo service postgresql restart'
     else:
         raise Exception("Database Type {} Not Implemented !".format(CONF['database_type']))
     local(cmd)
@@ -121,41 +121,48 @@ def free_cache():
 
 @task
 def upload_result(task_id=1):
-    cmd = 'python ./upload.py {} {} {}'.format(CONF['oltpbench_log'],
+    cmd = 'python ./upload.py {} {} {}/new_result/'.format(CONF['oltpbench_log'],
                                                task_id,
-                                               "http://127.0.0.1:8000/new_result/")
+                                               CONF['upload_url'])
     local(cmd)
 
 
 @task
 def get_result(task_id=1):
-    cmd = 'python ../../script/get_result.py http://127.0.0.1:8000 {} 5'.\
-          format(task_id)
+    cmd = 'python ../../script/get_result.py {} {} 5'.\
+          format(CONF['upload_url'], task_id)
     local(cmd)
 
 @task
 def loop(task_id=1):
 
     # free cache
-    # free_cache()
+    free_cache()
 
     # get result
     get_result(task_id)
 
-    # change config
-    change_conf(task_id)
+    with open("/home/bohan/ottertune-demo/client/driver/config_{}".format(task_id), 'r') as f:
+        lines = f.readlines()
+        finished = (lines[0] == "FINISHED")
 
-    # restart database
-    restart_database()
+    if(finished):
+        local("rm /home/bohan/ottertune-demo/client/driver/config_{}".format(task_id))
+    else:
+        # change config
+        change_conf(task_id)
 
-    # run oltpbench
-    run_oltpbench()
+        # restart database
+        restart_database()
 
-    # upload result
-    upload_result(task_id)
+        # run oltpbench
+        run_oltpbench()
 
-    # move config 
-    save_dbms_result(task_id)
+        # upload result
+        upload_result(task_id)
+
+        # move config 
+        save_dbms_result(task_id)
 
 
 @task
