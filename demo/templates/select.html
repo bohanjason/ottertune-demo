@@ -12,7 +12,25 @@
 
   <form method="post"  onsubmit="alert('Submit Successfully!')">
   <div class="card" >
-    <div class="card-header">Choose Your Settings</div>
+    <div class="card-header">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th scope="col">Machine Type: m3.2xlarge</th>
+            <th scope="col">Machine Memory: 30 GB</th>
+            <th scope="col">Machine CPUs: 8 cores</th>
+          </tr>
+          <tr>
+            <th scope="col">Workload Name: TPC-C</th>
+            <th scope="col"># Scalefactor: 200</th>
+            <th scope="col"># Terminals: 50</th>
+          </tr>
+        </tbody>
+      </table>
+      Choose Your Settings
+
+
+    </div>
       <table class="table table-striped">
         <thead class="thead-dark">
           <tr>

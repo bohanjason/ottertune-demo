@@ -26,6 +26,10 @@ LOG = logging.getLogger(__name__)
 LOG.addHandler(logging.StreamHandler())
 LOG.setLevel(logging.INFO)
 
+
+ip = 'http://192.168.2.21:8000'
+upload_code = 'XB0P94PTIOKS1ZZPC9QW'
+
 @login_required
 def home(request):
     return render(request, 'home.html')
@@ -92,8 +96,7 @@ def get_result(request, task_id):
     return HttpResponse(config.knobs_setting)
 
 def lead(request):
-    ip = 'http://192.168.2.21:8000'
-    upload_code = 'XB0P94PTIOKS1ZZPC9QW'
+
     url = ip + '/get_max_throughput/' + upload_code
     response = json.loads(urllib.request.urlopen(url).read().decode())
     best_id = response['id'] 
@@ -117,6 +120,27 @@ def lead(request):
     return render(request, 'lead.html', {'leads': leads, "nbar": "lead"})
 
 def biglead(request):
+   # ip = 'http://192.168.2.21:8000'
+   # upload_code = 'XB0P94PTIOKS1ZZPC9QW'
+    url = ip + '/get_max_throughput/' + upload_code
+    response = json.loads(urllib.request.urlopen(url).read().decode())
+    best_id = response['id'] 
+    best_perf = round(response['throughput'], 2)
+    best_knobs = response['knobs']
+
+    if (best_id > 0):
+        try:
+            ot = Config.objects.get(username = 'OtterTune')
+            ot.throughput = best_perf
+            ot.knobs_setting = best_knobs
+        except ObjectDoesNotExist:
+            ot = Config.objects.create(username = 'OtterTune',
+                                       email = 'ottertune@cs.cmu.edu',
+                                       knobs_setting = best_knobs, 
+                                       throughput = best_perf,
+                                       status = 'FINISHED')
+        ot.save()
+
     leads = Config.objects.filter(status='FINISHED').order_by('-throughput')
     return render(request, 'biglead.html', {'leads': leads, "nbar": "lead"})
 
