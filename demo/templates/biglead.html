@@ -60,9 +60,15 @@
         <tbody>
           {% for lead in leads %}
           <tr class="d-flex">
-            <td class="col-2">{{ forloop.counter }}</td>
-            <td class="col-7">{{ lead.username }}</td>
-            <td class="col-3">{{ lead.throughput }}</td>
+            {%if lead.username == 'OtterTune'%}
+              <td class="col-2" bgcolor="red"><font color="white">{{ forloop.counter }}</font></td>
+              <td class="col-7" bgcolor="red"><font color="white">{{ lead.username }}</font></td>
+              <td class="col-3" bgcolor="red"><font color="white">{{ lead.throughput }}</font></td>
+            {%else%}
+              <td class="col-2">{{ forloop.counter }}</td>
+              <td class="col-7">{{ lead.username }}</td>
+              <td class="col-3">{{ lead.throughput }}</td>
+            {%endif%}
           </tr> 
           {% endfor %}
         </tbody>

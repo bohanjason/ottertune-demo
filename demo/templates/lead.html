@@ -33,11 +33,19 @@
         <tbody>
           {% for lead in leads %}
           <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>{{ lead.username }}</td>
-            <!--td>{{ lead.email }}</td-->
-            <td><a href="/task_info/{{lead.id}}">Task {{lead.id}} Settings</a></td>
-            <td>{{ lead.throughput }}</td>
+            {%if lead.username == 'OtterTune'%}
+              <td bgcolor="red"><font color="white">{{ forloop.counter }}</font></td>
+              <td bgcolor="red"><font color="white">{{ lead.username }}</font></td>
+              <!--td>{{ lead.email }}</td-->
+              <td bgcolor="red"><a href="/task_info/{{lead.id}}"><font color="white">OtterTune Settings</font></a></td>
+              <td bgcolor="red"><font color="white">{{ lead.throughput }}</font></td>
+            {%else%}
+              <td>{{ forloop.counter }}</td>
+              <td>{{ lead.username }}</td>
+              <!--td>{{ lead.email }}</td-->
+              <td><a href="/task_info/{{lead.id}}">Task {{lead.id}} Settings</a></td>
+              <td>{{ lead.throughput }}</td>
+            {%endif%}
           </tr> 
           {% endfor %}
         </tbody>
