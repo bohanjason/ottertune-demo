@@ -36,9 +36,13 @@
             {%if lead.username == 'OtterTune'%}
               <td bgcolor="red"><font color="white">{{ forloop.counter }}</font></td>
               <td bgcolor="red"><font color="white">{{ lead.username }}</font></td>
-              <!--td>{{ lead.email }}</td-->
-              <td bgcolor="red"><a href="/task_info/{{lead.id}}"><font color="white">OtterTune Settings</font></a></td>
+              <td bgcolor="red"><a href="/task_info/{{lead.id}}"><font color="white">OtterTune Settings (ID: {{ lead.email }})</font></a></td>
               <td bgcolor="red"><font color="white">{{ lead.throughput }}</font></td>
+            {%elif lead.username == 'Default'%}
+              <td bgcolor="gray"><font color="white">{{ forloop.counter }}</font></td>
+                <td bgcolor="gray"><font color="white">{{ lead.username }}</font></td>
+                <td bgcolor="gray"><a href="/task_info/{{lead.id}}"><font color="white">Default Settings</font></a></td>
+                <td bgcolor="gray"><font color="white">{{ lead.throughput }}</font></td>
             {%else%}
               <td>{{ forloop.counter }}</td>
               <td>{{ lead.username }}</td>

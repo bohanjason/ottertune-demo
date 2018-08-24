@@ -27,7 +27,7 @@ LOG.addHandler(logging.StreamHandler())
 LOG.setLevel(logging.INFO)
 
 
-ip = 'http://192.168.2.21:8000'
+ip = 'http://192.168.2.183:8000'
 upload_code = 'XB0P94PTIOKS1ZZPC9QW'
 
 @login_required
@@ -108,9 +108,10 @@ def lead(request):
             ot = Config.objects.get(username = 'OtterTune')
             ot.throughput = best_perf
             ot.knobs_setting = best_knobs
+            ot.email = best_id # result id on the ottertune server
         except ObjectDoesNotExist:
             ot = Config.objects.create(username = 'OtterTune',
-                                       email = 'ottertune@cs.cmu.edu',
+                                       email = best_id,
                                        knobs_setting = best_knobs, 
                                        throughput = best_perf,
                                        status = 'FINISHED')
@@ -150,7 +151,10 @@ def task_info(request, task_id):
 
     try:
         config = Config.objects.get(pk=task_id)
-        knobs_setting = json.loads(config.knobs_setting)
+        if(int(task_id) == 1): # default
+            knobs_setting = {'default_statistics_target': '100', 'checkpoint_timeout': '5min', 'effective_cache_size': '128MB', 'effective_io_concurrency': '1', 'commit_siblings': '5', 'wal_buffers': '4MB', 'checkpoint_segments': '3', 'shared_buffers': '128MB', 'bgwriter_lru_maxpages': '100', 'commit_delay': '0'}    
+        else:
+            knobs_setting = json.loads(config.knobs_setting)
         for knob in knobs:
             if knob.name in knobs_setting:
                 settings.append((knob, knobs_setting[knob.name]))

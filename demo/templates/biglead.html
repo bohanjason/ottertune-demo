@@ -65,6 +65,10 @@
               <td class="col-2" bgcolor="red"><font color="white">{{ forloop.counter }}</font></td>
               <td class="col-7" bgcolor="red"><font color="white">{{ lead.username }}</font></td>
               <td class="col-3" bgcolor="red"><font color="white">{{ lead.throughput }}</font></td>
+            {%elif lead.username == 'Default'%}
+              <td class="col-2" bgcolor="gray"><font color="white">{{ forloop.counter }}</font></td>
+              <td class="col-7" bgcolor="gray"><font color="white">{{ lead.username }}</font></td>
+              <td class="col-3" bgcolor="gray"><font color="white">{{ lead.throughput }}</font></td>
             {%else%}
               <td class="col-2">{{ forloop.counter }}</td>
               <td class="col-7">{{ lead.username }}</td>
